@@ -1,22 +1,19 @@
-//P1: sum of the multiples of 3 or 5 below 1000
+//P2: Find the sum of all the even-valued terms in the Fibonacci sequence which do not exceed four million.
+
 #include <iostream>
 #include <fstream>
 using namespace std;
-int SumDivisibleBy(int n) {
-	int target = 1000;
-	int sum = 0;
-	for (int i = 0; i < target; ++i)
-	{
-		if (i % n == 0) {
-			sum += i;
-		}
-	}
-	return sum;
-}
 
 int main() {
+	int limit = 4e6;
 	int sum = 0;
-	sum = SumDivisibleBy(3) + SumDivisibleBy(5) - SumDivisibleBy(15);
+	int a0 = 1, a1 = 1,a2=a0+a1;
+	while (a2 < limit) 
+	{
+		sum += a2;
+		a0 = a1 + a2;
+		a1 = a2 + a0;
+		a2 = a0 + a1;
+	}
 	cout << sum << '\n';
-	return 0;
 }
